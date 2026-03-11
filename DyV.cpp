@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include "dyv.h"
 using namespace std;
 
 string A;
@@ -10,7 +11,7 @@ int m;
 int amp_der (int i){ //O(m)
     int pasos = 1;
 
-    while (i+1 < A.length() && A[i] <= A[i+1] && pasos < m){
+    while (i+1 < (int)A.length() && A[i] <= A[i+1] && pasos < m){
         i++;
         pasos++;
     }
@@ -97,24 +98,24 @@ pair<int, int> acortar(pair<int, int> par){
 pair<int, int> alargar(pair<int, int> par){
     return {par.second-m-1, par.second};
 }
-
+/*
 int main(int argc, char const *argv[])
 {
     cin >> A;
     cin >> m;
     int len_A = A.length();
-    //Calculamos la solución.
+    Calculamos la solución.
     pair<int, int> sol = dyv({0, len_A -1});
-    //Cogemos la longitud.
+    Cogemos la longitud.
     int len_C = sol.second - sol.first +1;
-    //Si es mayor que m la acortamos para que esté en el rango correcto.
+    Si es mayor que m la acortamos para que esté en el rango correcto.
     if (len_C > m) {
         sol = acortar(sol);
         len_C = m;  
     } 
-    /*Si el inicio de la solución hace que la ventana de m quede fuera por el final,
+    Si el inicio de la solución hace que la ventana de m quede fuera por el final,
     cambiamos el inicio de la solución para que del inicio al final hayan m carácteres
-    y la ventana de tamaño m termine en el final de A.*/
+    y la ventana de tamaño m termine en el final de A.
     if (len_A - sol.first < m) {
         sol.first = len_A - m;
     }
@@ -122,3 +123,4 @@ int main(int argc, char const *argv[])
     cout << sol.first +1 << " " << len_C;
     return 0;
 }
+*/

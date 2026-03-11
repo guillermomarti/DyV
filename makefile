@@ -12,5 +12,9 @@ tests_oraculo: tests_oraculo.cpp dyv.o
 dyv.o: dyv.cpp dyv.h
 	g++ -std=c++11 -Wall -c dyv.cpp
 
+graficas: tiempos
+	./tiempos
+	python regresion.py
+
 clean:
 	rm -f *.o tests_unitarios tests_oraculo tiempos *.pdf *.csv

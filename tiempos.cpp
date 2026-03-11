@@ -19,7 +19,7 @@ string generarPeorCaso(int longitud) {
     return s;
 }
 
-// Mejor caso: Cadena descendente (la racha se corta siempre en el medio)
+// Mejor caso: Cadena descendente
 string generarMejorCaso(int longitud) {
     string s = "";
     for (int i = 0; i < longitud; ++i) {
@@ -29,11 +29,15 @@ string generarMejorCaso(int longitud) {
 }
 
 // Mide el tiempo en milisegundos
-double medirTiempo(const string& secuencia, int m) {
+double medirTiempo(const string& secuencia, int valor_m) {
+    // Sincronizamos las variables globales que usa tu DyV.cpp
+    A = secuencia;
+    m = valor_m;
+
     auto start = chrono::high_resolution_clock::now();
 
-    // Llamada a tu función DyV
-    dyv(0, secuencia.size() - 1, secuencia, m);
+    // Llamada corregida: Enviamos el par {inicio, fin}
+    dyv({0, (int)secuencia.size() - 1});
 
     auto end = chrono::high_resolution_clock::now();
     chrono::duration<double, milli> duracion = end - start;
@@ -62,13 +66,13 @@ int main() {
     cout << "Iniciando medicion de tiempos..." << endl;
 
     for (int longitud : longitudes) {
-        int m = 100; 
+        int m_actual = 100; 
 
         // Medir Mejor Caso
         string mejorCaso = generarMejorCaso(longitud);
         vector<double> tiemposMejor;
         for (int j = 0; j < 10; j++) {
-            tiemposMejor.push_back(medirTiempo(mejorCaso, m));
+            tiemposMejor.push_back(medirTiempo(mejorCaso, m_actual));
         }
         double medMejor = calcularMediana(tiemposMejor);
 
@@ -76,7 +80,7 @@ int main() {
         string peorCaso = generarPeorCaso(longitud);
         vector<double> tiemposPeor;
         for (int j = 0; j < 10; j++) {
-            tiemposPeor.push_back(medirTiempo(peorCaso, m));
+            tiemposPeor.push_back(medirTiempo(peorCaso, m_actual));
         }
         double medPeor = calcularMediana(tiemposPeor);
 
