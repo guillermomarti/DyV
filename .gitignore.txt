@@ -1,0 +1,9 @@
+# Ignorar configuración de VS Code
+.vscode/
+
+# Ignorar ejecutables y objetos
+*.o
+tests_unitarios
+tests_oraculo
+tiempos
+*.csv
