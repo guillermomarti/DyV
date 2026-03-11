@@ -1,9 +1,14 @@
-# Ignorar configuración de VS Code
-.vscode/
-
-# Ignorar ejecutables y objetos
+# Ejecutables y objetos
+*.exe
 *.o
+tiempos
 tests_unitarios
 tests_oraculo
-tiempos
+
+# Resultados de gráficas y datos
+*.pdf
 *.csv
+
+# Carpetas de VS Code o Python
+.vscode/
+__pycache__/
