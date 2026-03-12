@@ -4,17 +4,15 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <utility>
 
 extern std::string A;
 extern int m;
 
 /**
  * @brief Resuelve el problema de la subcadena ascendente mediante Divide y Vencerás.
- * * @param p Índice de inicio del rango a analizar.
- * @param q Índice de fin del rango a analizar.
- * @param A Referencia a la cadena original.
- * @param m Tamaño de la ventana de búsqueda.
- * @return std::pair<int, int> Un par con el {índice_inicio, longitud_C}.
+ * @param par Un par con el {índice_inicio, índice_fin} del rango a analizar.
+ * @return std::pair<int, int> Un par con el {índice_inicio, índice_fin} de la racha encontrada.
  */
 std::pair<int, int> dyv(std::pair<int,int> par);
 
@@ -38,4 +36,18 @@ int amp_izq(int i);
  */
 std::pair<int, int> cadena_mayor(std::pair<int, int> s1, std::pair<int, int> s2);
 
-#endif 
+/**
+ * @brief Recorta una racha para que su longitud sea exactamente m.
+ * @param par Un par con el {índice_inicio, índice_fin}.
+ * @return std::pair<int, int> El par recortado desde el inicio.
+ */
+std::pair<int, int> acortar(std::pair<int, int> par);
+
+/**
+ * @brief Ajusta una racha para que termine en su índice final con longitud m.
+ * @param par Un par con el {índice_inicio, índice_fin}.
+ * @return std::pair<int, int> El par ajustado hacia atrás.
+ */
+std::pair<int, int> alargar(std::pair<int, int> par);
+
+#endif

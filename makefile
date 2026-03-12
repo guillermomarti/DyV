@@ -1,5 +1,11 @@
 all: tests_unitarios tests_oraculo tiempos
 
+validar: tests_unitarios tests_oraculo
+	@echo "Ejecutando Tests Unitarios..."
+	./tests_unitarios
+	@echo "Ejecutando Test de Oraculo..."
+	./tests_oraculo
+
 tiempos: tiempos.cpp dyv.o
 	g++ -std=c++11 -Wall tiempos.cpp dyv.o -o tiempos
 
