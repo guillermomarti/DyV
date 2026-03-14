@@ -1,11 +1,5 @@
 all: tests_unitarios tests_oraculo tiempos
 
-validar: tests_unitarios tests_oraculo
-	@echo "Ejecutando Tests Unitarios..."
-	./tests_unitarios
-	@echo "Ejecutando Test de Oraculo..."
-	./tests_oraculo
-
 tiempos: tiempos.cpp dyv.o
 	g++ -std=c++11 -Wall tiempos.cpp dyv.o -o tiempos
 
@@ -18,9 +12,5 @@ tests_oraculo: tests_oraculo.cpp dyv.o
 dyv.o: dyv.cpp dyv.h
 	g++ -std=c++11 -Wall -c dyv.cpp
 
-graficas: tiempos
-	./tiempos
-	python regresion.py
-
 clean:
-	rm -f *.o tests_unitarios tests_oraculo tiempos *.pdf *.csv
+	del /f /q *.o tests_unitarios.exe tests_oraculo.exe tiempos.exe *.pdf *.csv 2>nul || exit 0

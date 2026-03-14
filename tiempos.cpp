@@ -10,34 +10,26 @@
 
 using namespace std;
 
-// Peor caso: Cadena ascendente (obliga a combinar y expandir)
-string generarPeorCaso(int longitud) {
-    string s = "";
-    for (int i = 0; i < longitud; ++i) {
-        s += 'a' + (i % 26);
-    }
-    return s;
-}
-
-// Mejor caso: Cadena descendente
 string generarMejorCaso(int longitud) {
     string s = "";
     for (int i = 0; i < longitud; ++i) {
-        s += 'z' - (i % 26);
+        s += (char)(i % 26);  
     }
     return s;
 }
 
-// Mide el tiempo en milisegundos
-double medirTiempo(const string& secuencia, int valor_m) {
-    // Sincronizamos las variables globales que usa tu DyV.cpp
-    A = secuencia;
-    m = valor_m;
+string generarPeorCaso(int longitud) {
+    string s = "";
+    for (int i = 0; i < longitud; ++i) {
+        s += 'z' - (i % 26); 
+    }
+    return s;
+}
 
+double medirTiempo(const string& secuencia, int valor_m) {
     auto start = chrono::high_resolution_clock::now();
 
-    // Llamada corregida: Enviamos el par {inicio, fin}
-    dyv({0, (int)secuencia.size() - 1});
+    dyv(secuencia, valor_m);
 
     auto end = chrono::high_resolution_clock::now();
     chrono::duration<double, milli> duracion = end - start;
@@ -56,7 +48,7 @@ double calcularMediana(vector<double> v) {
 
 int main() {
     vector<int> longitudes;
-    for (int i = 0; i <= 12; i++) {
+    for (int i = 0; i <= 10; i++) {
         longitudes.push_back(1000 * pow(2, i));
     }
 
@@ -66,9 +58,8 @@ int main() {
     cout << "Iniciando medicion de tiempos..." << endl;
 
     for (int longitud : longitudes) {
-        int m_actual = 100; 
+        int m_actual = 10; 
 
-        // Medir Mejor Caso
         string mejorCaso = generarMejorCaso(longitud);
         vector<double> tiemposMejor;
         for (int j = 0; j < 10; j++) {
@@ -76,7 +67,6 @@ int main() {
         }
         double medMejor = calcularMediana(tiemposMejor);
 
-        // Medir Peor Caso
         string peorCaso = generarPeorCaso(longitud);
         vector<double> tiemposPeor;
         for (int j = 0; j < 10; j++) {

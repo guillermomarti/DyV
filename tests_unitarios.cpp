@@ -4,52 +4,55 @@
 #include <utility>
 #include "dyv.h"
 
-int obtenerLongitud(std::pair<int, int> res) {
-    return res.second - res.first + 1;
-}
+using namespace std;
 
 void testPrincipio() {
-    A = "12323412";
-    m = 10;
-    std::pair<int, int> resultado = dyv({0, (int)A.length() - 1});
-    assert(obtenerLongitud(resultado) == 3);
+    string S = "abcbcdeab"; 
+    int m = 3;
+    pair<int, int> resultado = dyv(S, m);
+    assert(resultado.first == 1);
+    assert(resultado.second == 3); 
 }
 
 void testFinal() {
-    A = "123234121234";
-    m = 10;
-    std::pair<int, int> resultado = dyv({0, (int)A.length() - 1});
-    assert(obtenerLongitud(resultado) == 4);
+    string S = "cbabadeabcd";
+    int m = 4;
+    pair<int, int> resultado = dyv(S, m);
+    assert(resultado.first == 8);
+    assert(resultado.second == 4);
 }
 
 void testMitad() {
-    A = "12341234561234";
-    m = 10;
-    std::pair<int, int> resultado = dyv({0, (int)A.length() - 1});
-    assert(obtenerLongitud(resultado) == 6);
+    string S = "abcefghijkab";
+    int m = 6;
+    pair<int, int> resultado = dyv(S, m);
+    assert(resultado.first == 1);
+    assert(resultado.second == 6);
+    
 }
 
 void testDecreciente() {
-    A = "54321";
-    m = 10;
-    std::pair<int, int> resultado = dyv({0, (int)A.length() - 1});
-    assert(obtenerLongitud(resultado) == 1);
+    string S = "fedcba";
+    int m = 3;
+    pair<int, int> resultado = dyv(S, m);
+    assert(resultado.first == 1);
+    assert(resultado.second == 1);
 }
 
 void testCreciente() {
-    A = "12345";
-    m = 10;
-    std::pair<int, int> resultado = dyv({0, (int)A.length() - 1});
-    assert(obtenerLongitud(resultado) == 5);
+    string S = "abcdefgh";
+    int m = 5;
+    pair<int, int> resultado = dyv(S, m);
+    assert(resultado.first == 1);
+    assert(resultado.second == 5);
 }
 
 int main() {
     testPrincipio();
-    testFinal();
     testMitad();
+    testFinal();
     testDecreciente();
     testCreciente();
-    
-    std::cout << "Todos los tests unitarios realizados con exito." << std::endl;
+    cout << "Todos los tests pasaron!" << endl;
     return 0;
 }
